@@ -1,0 +1,5 @@
+import SwiftUI
+struct RecordHistoryView:View {
+ @EnvironmentObject var store:AppStore;@State private var records:[PickRecord]=[];@State private var scope=""
+ var body:some View{List{Section{Text(scope.isEmpty ? "Verified picks come from public cards saved before the event cutoff.":scope).font(.caption).foregroundStyle(.secondary)};ForEach(records){r in VStack(alignment:.leading,spacing:6){Text(r.pick.fighter ?? "Fighter").font(.headline);Text(r.eventName).font(.caption).foregroundStyle(.secondary);Text(r.grade.winner.uppercased()).font(.subheadline.bold());if let method=r.grade.method{Text("Method: "+method).font(.caption)};if let round=r.grade.round{Text("Round: "+round).font(.caption)};Text(r.source+" · "+String(r.checkedAt.prefix(16))).font(.caption2).foregroundStyle(.secondary)}}}.navigationTitle("Pick history").task{guard let username=store.profile?.username else{return};store.run{let r:RecordsResponse=try await APIClient.request("records/"+username,token:store.token());records=r.records;scope=r.scope}}}
+}

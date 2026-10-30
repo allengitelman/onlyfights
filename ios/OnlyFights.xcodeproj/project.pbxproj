@@ -1,0 +1,45 @@
+// !$*UTF8*$!
+{ archiveVersion = 1; classes = {}; objectVersion = 56; objects = {
+C150E22E359EEB8857076379 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnlyFights/AppStore.swift"; sourceTree = "<group>"; };
+FB19AA1C4318DE6A90131B89 = { isa = PBXBuildFile; fileRef = C150E22E359EEB8857076379; };
+89C581E6279FC01F93EDA2B3 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnlyFights/Core/Models.swift"; sourceTree = "<group>"; };
+824C62DBDC426787C8E76CD3 = { isa = PBXBuildFile; fileRef = 89C581E6279FC01F93EDA2B3; };
+2CB0D974270CBD84AAFB06E6 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnlyFights/OnlyFightsApp.swift"; sourceTree = "<group>"; };
+823ACB82BCF0EBA24F5E9B46 = { isa = PBXBuildFile; fileRef = 2CB0D974270CBD84AAFB06E6; };
+4BA12F2BBAF219ACB5A835A1 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnlyFights/Services/APIClient.swift"; sourceTree = "<group>"; };
+59FA0649576B3095E08D3CEA = { isa = PBXBuildFile; fileRef = 4BA12F2BBAF219ACB5A835A1; };
+FF2505E92BE19E6059101898 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnlyFights/Services/AuthStore.swift"; sourceTree = "<group>"; };
+82AA4B6ED4BD98C7633D2C8B = { isa = PBXBuildFile; fileRef = FF2505E92BE19E6059101898; };
+1A8615CC61B62493769C574E = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnlyFights/Services/PosterRenderer.swift"; sourceTree = "<group>"; };
+3A2D15C503C83F2A552403C2 = { isa = PBXBuildFile; fileRef = 1A8615CC61B62493769C574E; };
+F3AF7382E4C44DCF88F16D2F = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnlyFights/Views/CardView.swift"; sourceTree = "<group>"; };
+9CCAF931F4472CD5EA39E237 = { isa = PBXBuildFile; fileRef = F3AF7382E4C44DCF88F16D2F; };
+9677DBC0E2CC1BB4E51CA9CA = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnlyFights/Views/FriendsView.swift"; sourceTree = "<group>"; };
+A3689F5A95A037E8EA807E12 = { isa = PBXBuildFile; fileRef = 9677DBC0E2CC1BB4E51CA9CA; };
+8711626459F770D80E4DE383 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnlyFights/Views/ParlaysView.swift"; sourceTree = "<group>"; };
+D3C429AA75FB8235147DE4CF = { isa = PBXBuildFile; fileRef = 8711626459F770D80E4DE383; };
+077EC1331E2ECA95C27724AC = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnlyFights/Views/PosterSheet.swift"; sourceTree = "<group>"; };
+33C7E0C773632FF920590A05 = { isa = PBXBuildFile; fileRef = 077EC1331E2ECA95C27724AC; };
+5655A6E6CDD7DF2428F6C264 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnlyFights/Views/ProfileView.swift"; sourceTree = "<group>"; };
+CF00EEC9C870A6EF96B17B4D = { isa = PBXBuildFile; fileRef = 5655A6E6CDD7DF2428F6C264; };
+A4561C147468A113A55CA28B = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnlyFights/Views/RecordHistoryView.swift"; sourceTree = "<group>"; };
+9A19356ABCA52CAA3146503D = { isa = PBXBuildFile; fileRef = A4561C147468A113A55CA28B; };
+155331AA327B7165430E6CBF = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnlyFights/Views/ResearchLabView.swift"; sourceTree = "<group>"; };
+67023B17C13ECDE9A6D0D19B = { isa = PBXBuildFile; fileRef = 155331AA327B7165430E6CBF; };
+B937A787464C6E8E4DE0A406 = { isa = PBXFileReference; lastKnownFileType = image.png; path = "OnlyFights/poster-background.png"; sourceTree = "<group>"; };
+1356FE22959BA1D929ADE03C = { isa = PBXBuildFile; fileRef = B937A787464C6E8E4DE0A406; };
+A8792157CB4F27FB949C035F = { isa = PBXFileReference; explicitFileType = wrapper.application; path = OnlyFights.app; sourceTree = BUILT_PRODUCTS_DIR; };
+0A3E27B8CA818264D75C8D81 = { isa = PBXGroup; children = (A8792157CB4F27FB949C035F); name = Products; sourceTree = "<group>"; };
+AD936FCBED631FA67E05C3EA = { isa = PBXGroup; children = (C150E22E359EEB8857076379,89C581E6279FC01F93EDA2B3,2CB0D974270CBD84AAFB06E6,4BA12F2BBAF219ACB5A835A1,FF2505E92BE19E6059101898,1A8615CC61B62493769C574E,F3AF7382E4C44DCF88F16D2F,9677DBC0E2CC1BB4E51CA9CA,8711626459F770D80E4DE383,077EC1331E2ECA95C27724AC,5655A6E6CDD7DF2428F6C264,A4561C147468A113A55CA28B,155331AA327B7165430E6CBF,B937A787464C6E8E4DE0A406,0A3E27B8CA818264D75C8D81); sourceTree = "<group>"; };
+878A52FC5FF6A57D50B7B870 = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (FB19AA1C4318DE6A90131B89,824C62DBDC426787C8E76CD3,823ACB82BCF0EBA24F5E9B46,59FA0649576B3095E08D3CEA,82AA4B6ED4BD98C7633D2C8B,3A2D15C503C83F2A552403C2,9CCAF931F4472CD5EA39E237,A3689F5A95A037E8EA807E12,D3C429AA75FB8235147DE4CF,33C7E0C773632FF920590A05,CF00EEC9C870A6EF96B17B4D,9A19356ABCA52CAA3146503D,67023B17C13ECDE9A6D0D19B); runOnlyForDeploymentPostprocessing = 0; };
+41D311A605520FC7B8B9A980 = { isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (1356FE22959BA1D929ADE03C); runOnlyForDeploymentPostprocessing = 0; };
+E2AA269EB967A8853A258BFA = { isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+73EBF6644258C120893E685D = { isa = XCBuildConfiguration; buildSettings = { "CLANG_ENABLE_MODULES" = "YES"; "IPHONEOS_DEPLOYMENT_TARGET" = "17.0"; "SDKROOT" = "iphoneos"; "SWIFT_VERSION" = "5.0"; "SWIFT_OPTIMIZATION_LEVEL" = "-Onone"; "DEBUG_INFORMATION_FORMAT" = "dwarf"; }; name = Debug; };
+0B0C687DF8B6B8DC790B519C = { isa = XCBuildConfiguration; buildSettings = { "CLANG_ENABLE_MODULES" = "YES"; "IPHONEOS_DEPLOYMENT_TARGET" = "17.0"; "SDKROOT" = "iphoneos"; "SWIFT_VERSION" = "5.0"; "SWIFT_OPTIMIZATION_LEVEL" = "-O"; "DEBUG_INFORMATION_FORMAT" = "dwarf-with-dsym"; }; name = Release; };
+76F8DEC3DFE0BDB465198890 = { isa = XCConfigurationList; buildConfigurations = (73EBF6644258C120893E685D,0B0C687DF8B6B8DC790B519C); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+6C7EFF6369083C8E1F2B1994 = { isa = XCBuildConfiguration; buildSettings = { "CLANG_ENABLE_MODULES" = "YES"; "IPHONEOS_DEPLOYMENT_TARGET" = "17.0"; "SDKROOT" = "iphoneos"; "SWIFT_VERSION" = "5.0"; "CODE_SIGN_STYLE" = "Automatic"; "CODE_SIGN_ENTITLEMENTS" = "OnlyFights/OnlyFights.entitlements"; "DEVELOPMENT_TEAM" = ""; "GENERATE_INFOPLIST_FILE" = "NO"; "INFOPLIST_FILE" = "OnlyFights/Info.plist"; "PRODUCT_NAME" = "$(TARGET_NAME)"; "PRODUCT_BUNDLE_IDENTIFIER" = "com.onlyfights.app"; "TARGETED_DEVICE_FAMILY" = "1"; "INSTAGRAM_APP_ID" = ""; "SWIFT_EMIT_LOC_STRINGS" = "YES"; "SWIFT_OPTIMIZATION_LEVEL" = "-Onone"; "DEBUG_INFORMATION_FORMAT" = "dwarf"; }; name = Debug; };
+DD75E2CB1C510A828AC72D96 = { isa = XCBuildConfiguration; buildSettings = { "CLANG_ENABLE_MODULES" = "YES"; "IPHONEOS_DEPLOYMENT_TARGET" = "17.0"; "SDKROOT" = "iphoneos"; "SWIFT_VERSION" = "5.0"; "CODE_SIGN_STYLE" = "Automatic"; "CODE_SIGN_ENTITLEMENTS" = "OnlyFights/OnlyFights.entitlements"; "DEVELOPMENT_TEAM" = ""; "GENERATE_INFOPLIST_FILE" = "NO"; "INFOPLIST_FILE" = "OnlyFights/Info.plist"; "PRODUCT_NAME" = "$(TARGET_NAME)"; "PRODUCT_BUNDLE_IDENTIFIER" = "com.onlyfights.app"; "TARGETED_DEVICE_FAMILY" = "1"; "INSTAGRAM_APP_ID" = ""; "SWIFT_EMIT_LOC_STRINGS" = "YES"; "SWIFT_OPTIMIZATION_LEVEL" = "-O"; "DEBUG_INFORMATION_FORMAT" = "dwarf-with-dsym"; }; name = Release; };
+1B672BF3DA427763BF644BE3 = { isa = XCConfigurationList; buildConfigurations = (6C7EFF6369083C8E1F2B1994,DD75E2CB1C510A828AC72D96); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+34A04005BCAF206EEC990BD9 = { isa = PBXNativeTarget; buildConfigurationList = 1B672BF3DA427763BF644BE3; buildPhases = (878A52FC5FF6A57D50B7B870,E2AA269EB967A8853A258BFA,41D311A605520FC7B8B9A980); buildRules = (); dependencies = (); name = OnlyFights; productName = OnlyFights; productReference = A8792157CB4F27FB949C035F; productType = "com.apple.product-type.application"; };
+244210E48437B6556980A702 = { isa = PBXProject; attributes = { LastUpgradeCheck = 2600; TargetAttributes = { 34A04005BCAF206EEC990BD9 = { CreatedOnToolsVersion = 26.0; SystemCapabilities = { com.apple.SignInWithApple = { enabled = 1; }; }; }; }; }; buildConfigurationList = 76F8DEC3DFE0BDB465198890; compatibilityVersion = "Xcode 14.0"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en,Base); mainGroup = AD936FCBED631FA67E05C3EA; productRefGroup = 0A3E27B8CA818264D75C8D81; projectDirPath = ""; projectRoot = ""; targets = (34A04005BCAF206EEC990BD9); };
+}; rootObject = 244210E48437B6556980A702; }

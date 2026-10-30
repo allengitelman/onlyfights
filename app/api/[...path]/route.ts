@@ -1,0 +1,24 @@
+import { env } from 'cloudflare:workers';
+import { getChatGPTUser,chatGPTSignInPath } from '../../chatgpt-auth';
+import { createBetplaceAPI } from '../../../lib/betplace';
+import { createSocialAPI } from '../../../lib/social-core';
+import { createAppIdentity, appError, authConfig } from '../../../lib/app-auth';
+import { createAppAPI } from '../../../lib/app-api';
+import { createEventService } from '../../../lib/events';
+import { withEventHistory } from '../../../lib/event-history';
+export const dynamic='force-dynamic';
+const handler=createSocialAPI({database:()=>env.DB,identify:()=>getChatGPTUser(),signInPath:chatGPTSignInPath});
+const betting=createBetplaceAPI({getKey:()=>env.SHARPSPORTS_PRIVATE_KEY,getLiveEnabled:()=>env.BETPLACE_LIVE_ENABLED==='true'});
+const config=()=>({url:env.SUPABASE_URL,key:env.SUPABASE_PUBLISHABLE_KEY,instagramAppId:env.INSTAGRAM_APP_ID});
+const identify=createAppIdentity({database:()=>env.DB,config});
+const app=createAppAPI({database:()=>env.DB,identify,eventService:withEventHistory({database:()=>env.DB,service:createEventService()}),config,legacyIdentify:()=>getChatGPTUser(),deleteIdentity:env.SUPABASE_SERVICE_ROLE_KEY?async(subject:string)=>{
+ const c=authConfig(config());if(!c||!env.SUPABASE_SERVICE_ROLE_KEY)throw appError('Account deletion is not configured. Contact the app owner.',503,'deletion_setup_required');
+ const r=await fetch(c.url+'/auth/v1/admin/users/'+encodeURIComponent(subject),{method:'DELETE',headers:{apikey:env.SUPABASE_SERVICE_ROLE_KEY,Authorization:'Bearer '+env.SUPABASE_SERVICE_ROLE_KEY},redirect:'manual',signal:AbortSignal.timeout(10000)});
+ if(!r.ok)throw appError('Account deletion could not be completed. Try again.',503);
+}:undefined});
+const route=(request:Request)=>{const path=new URL(request.url).pathname;return path.startsWith('/api/v1/')?app(request):path==='/api/betplace'?betting(request):handler(request)};
+export const GET=route;
+export const POST=route;
+export const PUT=route;
+export const DELETE=route;
+export const OPTIONS=route;

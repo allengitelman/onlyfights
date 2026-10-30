@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1793244615524,
+      "tag": "0000_clammy_mandrill",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1793372400000,
+      "tag": "0001_onlyfights_beta",
+      "breakpoints": true
+    }
+  ]
+}

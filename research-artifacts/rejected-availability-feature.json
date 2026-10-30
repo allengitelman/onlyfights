@@ -1,0 +1,435 @@
+{
+  "version": "fighter-stats-2",
+  "trainedAt": "2026-10-28T22:01:19.968416+00:00",
+  "performanceCutoff": "2026-10-24",
+  "features": [
+    {
+      "key": "striking_output",
+      "label": "Strikes landed per minute",
+      "group": "striking"
+    },
+    {
+      "key": "strikes_absorbed",
+      "label": "Strikes absorbed per minute",
+      "group": "defense"
+    },
+    {
+      "key": "striking_accuracy",
+      "label": "Striking accuracy",
+      "group": "striking"
+    },
+    {
+      "key": "striking_defense",
+      "label": "Strikes avoided",
+      "group": "defense"
+    },
+    {
+      "key": "takedown_rate",
+      "label": "Takedowns per 15 minutes",
+      "group": "grappling"
+    },
+    {
+      "key": "takedown_accuracy",
+      "label": "Takedown accuracy",
+      "group": "grappling"
+    },
+    {
+      "key": "takedown_defense",
+      "label": "Takedowns defended",
+      "group": "defense"
+    },
+    {
+      "key": "submission_attempts",
+      "label": "Submission attempts per 15 minutes",
+      "group": "grappling"
+    },
+    {
+      "key": "knockdown_rate",
+      "label": "Knockdowns per 15 minutes",
+      "group": "power"
+    },
+    {
+      "key": "knockdowns_absorbed",
+      "label": "Knockdowns absorbed per 15 minutes",
+      "group": "durability"
+    },
+    {
+      "key": "control_share",
+      "label": "Time controlling the fight",
+      "group": "grappling"
+    },
+    {
+      "key": "opponent_control",
+      "label": "Time controlled by the opponent",
+      "group": "defense"
+    },
+    {
+      "key": "total_output",
+      "label": "Total strikes landed per minute",
+      "group": "striking"
+    },
+    {
+      "key": "total_absorbed",
+      "label": "Total strikes absorbed per minute",
+      "group": "defense"
+    },
+    {
+      "key": "distance_share",
+      "label": "Striking at distance",
+      "group": "style"
+    },
+    {
+      "key": "ground_share",
+      "label": "Striking on the ground",
+      "group": "style"
+    },
+    {
+      "key": "head_share",
+      "label": "Strikes aimed at the head",
+      "group": "style"
+    },
+    {
+      "key": "body_share",
+      "label": "Strikes aimed at the body",
+      "group": "style"
+    },
+    {
+      "key": "leg_share",
+      "label": "Strikes aimed at the legs",
+      "group": "style"
+    },
+    {
+      "key": "recent_strike_margin",
+      "label": "Recent striking advantage",
+      "group": "form"
+    },
+    {
+      "key": "recent_takedown_rate",
+      "label": "Recent takedown pace",
+      "group": "form"
+    },
+    {
+      "key": "recent_control",
+      "label": "Recent time controlling the fight",
+      "group": "form"
+    },
+    {
+      "key": "win_rate",
+      "label": "UFC win rate",
+      "group": "record"
+    },
+    {
+      "key": "recent_win_rate",
+      "label": "Recent winning form",
+      "group": "form"
+    },
+    {
+      "key": "ko_wins",
+      "label": "Knockout win history",
+      "group": "power"
+    },
+    {
+      "key": "sub_wins",
+      "label": "Submission win history",
+      "group": "grappling"
+    },
+    {
+      "key": "decision_wins",
+      "label": "Decision win history",
+      "group": "record"
+    },
+    {
+      "key": "ko_losses",
+      "label": "Knockout loss history",
+      "group": "durability"
+    },
+    {
+      "key": "sub_losses",
+      "label": "Submission loss history",
+      "group": "durability"
+    },
+    {
+      "key": "experience",
+      "label": "UFC experience",
+      "group": "experience"
+    },
+    {
+      "key": "age",
+      "label": "Age on fight day",
+      "group": "physical"
+    },
+    {
+      "key": "reach",
+      "label": "Reach",
+      "group": "physical"
+    },
+    {
+      "key": "height",
+      "label": "Height",
+      "group": "physical"
+    },
+    {
+      "key": "inactivity",
+      "label": "Time since last fight",
+      "group": "activity"
+    },
+    {
+      "key": "opponent_strength",
+      "label": "Past results adjusted for opponent quality",
+      "group": "opposition"
+    },
+    {
+      "key": "observed_minutes",
+      "label": "Minutes with performance data",
+      "group": "experience"
+    },
+    {
+      "key": "stats_coverage",
+      "label": "Share of bouts with detailed stats",
+      "group": "evidence"
+    },
+    {
+      "key": "control_coverage",
+      "label": "Control-time data coverage",
+      "group": "evidence"
+    },
+    {
+      "key": "physical_coverage",
+      "label": "Fighter measurements available",
+      "group": "evidence"
+    }
+  ],
+  "ownFeatureCount": 39,
+  "counterKeys": [
+    "sigL",
+    "sigAtt",
+    "tdL",
+    "tdAtt",
+    "sub",
+    "kd",
+    "control",
+    "totalL",
+    "totalAtt",
+    "headL",
+    "bodyL",
+    "legL",
+    "distanceL",
+    "groundL",
+    "reversals",
+    "ctrlKnown"
+  ],
+  "boutCount": 8762,
+  "performanceBoutCount": 8741,
+  "dataAudit": {
+    "roundRows": 39010,
+    "resultRows": 8762,
+    "uniqueFighters": 2791,
+    "performanceBouts": 8741,
+    "missingBothOrOnePerformance": 21,
+    "inputHashes": {
+      "ufc_event_details.csv": "bc257c6fd46cc75c3c9f1865feafb6c8cfc3a2f82206e1cfda8cc77b7a26f7cf",
+      "ufc_fight_results.csv": "b8ccfb6f9319141aebc39c9a666f6abd18898e05915947cb5482044be5953175",
+      "ufc_fight_stats.csv": "97e3553d64bc845835d9f85b1b600c72083941f7e55d0f32d18d827ba9658334",
+      "ufc_fighter_tott.csv": "50a6755c7627a75270a0fee75e99137628f08519ed13019e252331af44ad0369"
+    }
+  },
+  "training": {
+    "trainEnd": "2020-12-31",
+    "selectionStart": "2021-01-01",
+    "selectionEnd": "2022-12-31",
+    "calibrationYear": 2023,
+    "testStart": "2024-01-01",
+    "trainBouts": 5979,
+    "testBouts": 958,
+    "cutoff": "2026-10-24",
+    "winnerArchitecture": "logistic",
+    "winnerParameters": {
+      "C": 0.05
+    },
+    "featureTiming": "all bouts on a date read prior state before any state update",
+    "minimumDetailedBoutsPerFighter": 2,
+    "testUnit": "bouts with at least two prior detailed UFC bouts per fighter",
+    "candidateValidation": [
+      {
+        "kind": "logistic",
+        "parameters": {
+          "C": 0.05
+        },
+        "logLoss": 0.66136
+      },
+      {
+        "kind": "logistic",
+        "parameters": {
+          "C": 0.2
+        },
+        "logLoss": 0.66177
+      },
+      {
+        "kind": "logistic",
+        "parameters": {
+          "C": 1
+        },
+        "logLoss": 0.66187
+      },
+      {
+        "kind": "logistic",
+        "parameters": {
+          "C": 5
+        },
+        "logLoss": 0.66185
+      },
+      {
+        "kind": "boosted_trees",
+        "parameters": {
+          "trees": 80,
+          "depth": 2
+        },
+        "logLoss": 0.67092
+      },
+      {
+        "kind": "boosted_trees",
+        "parameters": {
+          "trees": 140,
+          "depth": 2
+        },
+        "logLoss": 0.66559
+      },
+      {
+        "kind": "boosted_trees",
+        "parameters": {
+          "trees": 100,
+          "depth": 3
+        },
+        "logLoss": 0.66526
+      }
+    ]
+  },
+  "sources": [
+    {
+      "title": "UFCStats round-level data (original maintainer mirror)",
+      "url": "https://github.com/Kairo-Angle/ufc"
+    },
+    {
+      "title": "ESPN completed bout performance totals",
+      "url": "https://www.espn.com/mma/schedule/_/league/ufc"
+    },
+    {
+      "title": "Published pre-fight MMA forecasting research",
+      "url": "https://doi.org/10.1016/j.ijforecast.2022.01.007"
+    },
+    {
+      "title": "Official UFC metric definitions and minimum samples",
+      "url": "https://statleaders.ufc.com/"
+    },
+    {
+      "title": "Probability calibration methodology",
+      "url": "https://scikit-learn.org/stable/modules/calibration.html"
+    }
+  ],
+  "evaluation": {
+    "winner": {
+      "n": 958,
+      "accuracy": 0.5282,
+      "brier": 0.3016,
+      "logLoss": 0.8376,
+      "resultsOnly": {
+        "n": 958,
+        "accuracy": 0.5438,
+        "brier": 0.244,
+        "logLoss": 0.6809
+      },
+      "coinFlip": {
+        "n": 958,
+        "accuracy": 0.5,
+        "brier": 0.25,
+        "logLoss": 0.6931
+      },
+      "allHistorySample": 1459,
+      "eligibleSample": 958,
+      "start": "2024-01-01",
+      "end": "2026-10-24",
+      "calibrationBins": [
+        {
+          "range": [
+            0,
+            0.4
+          ],
+          "n": 171,
+          "meanPrediction": 0.2371,
+          "observedWinRate": 0.6257
+        },
+        {
+          "range": [
+            0.4,
+            0.5
+          ],
+          "n": 230,
+          "meanPrediction": 0.4565,
+          "observedWinRate": 0.4609
+        },
+        {
+          "range": [
+            0.5,
+            0.6
+          ],
+          "n": 241,
+          "meanPrediction": 0.5429,
+          "observedWinRate": 0.6432
+        },
+        {
+          "range": [
+            0.6,
+            0.7
+          ],
+          "n": 85,
+          "meanPrediction": 0.6412,
+          "observedWinRate": 0.5765
+        },
+        {
+          "range": [
+            0.7,
+            1
+          ],
+          "n": 231,
+          "meanPrediction": 0.8398,
+          "observedWinRate": 0.4935
+        }
+      ],
+      "accuracyInterval": [
+        0.496,
+        0.5581
+      ]
+    },
+    "method": {
+      "n": 953,
+      "accuracy": 0.531,
+      "logLoss": 0.9832,
+      "frequencyBaselineLogLoss": 1.0552,
+      "start": "2024-01-01",
+      "end": "2026-10-24",
+      "conditional": true,
+      "unit": "bouts"
+    },
+    "round": {
+      "n": 501,
+      "accuracy": 0.4511,
+      "logLoss": 1.1259,
+      "frequencyBaselineLogLoss": 1.2092,
+      "start": "2024-01-01",
+      "end": "2026-10-24",
+      "conditional": true,
+      "unit": "bouts"
+    },
+    "totals": {
+      "n": 2196,
+      "accuracy": 0.6589,
+      "logLoss": 0.621,
+      "frequencyBaselineLogLoss": 0.6651,
+      "start": "2024-01-01",
+      "end": "2026-10-24",
+      "conditional": false,
+      "unit": "round-total predictions",
+      "brier": 0.2157
+    }
+  }
+}

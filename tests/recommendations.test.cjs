@@ -1,0 +1,14 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const ctx=vm.createContext({});vm.runInContext(fs.readFileSync('public/shortlist.js','utf8'),ctx);
+const make=(id,p,ids,market='Moneyline')=>({p:{id,d:3,legs:ids.map((fight,i)=>({fight,market:i===0?market:'Moneyline',dog:fight===7}))},f:{p}});
+ctx.ranked=[make(1,.72,[1,2]),make(2,.65,[3,4]),make(3,.6,[1,3]),make(4,.45,[7,1]),make(5,.42,[7,3]),make(6,.3,[1,4],'By Submission'),make(7,.28,[3,5],'By KO'),make(8,.35,[1,5],'Over 2.5 rounds'),make(9,.32,[2,6],'Under 1.5 rounds'),make(10,.21,[1,2,3,4]),make(11,.18,[2,3,5,6]),make(12,.22,[1,2,3,4,5,6])];
+let groups=vm.runInContext('selectRecommendationGroups(ranked,l=>l.dog)',ctx);
+assert.equal(groups.length,5);assert.equal(groups[0].tickets[0].id,1);assert.ok(groups.every(g=>g.tickets.length<=2));assert.equal(new Set(groups.flatMap(g=>g.tickets.map(p=>p.id))).size,10);
+assert.ok(groups.find(g=>g.id==='underdogs').tickets.every(p=>p.legs.some(l=>l.dog)));assert.ok(groups.find(g=>g.id==='ambitious').tickets.every(p=>p.legs.length<=5));
+ctx.picks={0:{side:0},1:{side:0}};ctx.roster=[[[null,null,-200]],[[null,null,150]]];assert.equal(vm.runInContext('selectedUnderdog({fight:0,d:20})',ctx),false);assert.equal(vm.runInContext('selectedUnderdog({fight:1})',ctx),true);
+ctx.ranked=[make(1,.7,[1,2])];groups=vm.runInContext('selectRecommendationGroups(ranked,l=>l.dog)',ctx);assert.equal(groups.length,1);
+ctx.ranked=[];assert.equal(vm.runInContext('selectRecommendationGroups(ranked)',ctx).length,0);
+const shell=fs.readFileSync('app/shell.html','utf8');assert.ok(shell.includes('id="all-parlays-board" hidden'));
+console.log('PASS: five curated groups, two tickets per group, no duplicates, stats-ranked underdogs, no prop-odds false underdogs, manageable swings, sparse/empty boards.');
+ctx.ranked=Array.from({length:9},(_,i)=>({...make(i,.8-i*.04,[i,i+10]),p:{...make(i,0,[i,i+10]).p,d:[4.99,5,6,8,10,13,13.01,null,11][i]}}));
+groups=vm.runInContext('selectRecommendationGroups(ranked)',ctx);const range=groups.find(g=>g.id==='range');assert.equal(range.tickets.length,5);assert.ok(range.tickets.every(p=>p.d>=5&&p.d<=13));assert.equal(range.tickets[0].id,1);assert.ok(range.tickets.some(p=>p.d===13));assert.equal(new Set(range.tickets.map(p=>p.id)).size,5);console.log('PASS: five distinct featured tickets, inclusive +400/+1200 boundaries, out-of-range and missing prices excluded, forecast ranking.');

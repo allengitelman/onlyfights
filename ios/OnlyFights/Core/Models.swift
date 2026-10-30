@@ -1,0 +1,22 @@
+import Foundation
+public func apiURL(base:URL,path:String)throws->URL{guard var c=URLComponents(url:base,resolvingAgainstBaseURL:false),let relative=URLComponents(string:path),relative.scheme==nil,relative.host==nil else{throw URLError(.badURL)};c.path="/api/v1/"+relative.path;c.queryItems=relative.queryItems;guard let u=c.url else{throw URLError(.badURL)};return u}
+public struct Fighter: Codable, Identifiable, Sendable { public var id:String; public var name:String; public var photo:String? }
+public struct FighterPrice: Codable, Sendable { public var ml:Double?; public var methods:[String:Double?]? }
+public struct FightQuote: Codable, Sendable { public var fighters:[String:FighterPrice];public var source:String;public var checkedAt:String;public var total:Double?;public var over:Double?;public var under:Double? }
+public struct FightResult:Codable,Sendable {public var winnerId:String?;public var kind:String?;public var method:String?;public var round:Int?}
+public struct Fight: Codable, Identifiable, Sendable {public var id:String;public var segment:String;public var fighters:[Fighter];public var weightclass:String;public var rounds:Int;public var completed:Bool?;public var result:FightResult?;public var quote:FightQuote?}
+public struct FightEvent: Codable, Identifiable, Sendable {public var id:String;public var name:String;public var date:String;public var startTime:String?;public var venue:String?;public var fights:[Fight];public var completed:Bool?;public var checkedAt:String?}
+public struct FightPick: Codable, Sendable, Equatable {public var fightId:String;public var athleteId:String;public var opponentId:String;public var method:String?;public var round:Int?;public var lock:Bool;public var fighter:String?;public var opponent:String?;public var photo:String?;public var opponentPhoto:String?;public var segment:String?;public var posterSide:Int?}
+public struct PickSelection:Codable,Sendable {public var values:[String:FightPick]=[:];public init(){}
+ public mutating func choose(fightID:String,athleteID:String,opponentID:String){if values[fightID]?.athleteId==athleteID {values.removeValue(forKey:fightID)}else{values[fightID]=FightPick(fightId:fightID,athleteId:athleteID,opponentId:opponentID,lock:false)}}
+ public mutating func method(_ value:String?,for fightID:String){guard values[fightID] != nil else{return};values[fightID]?.method=value;values[fightID]?.round=nil}
+ public mutating func round(_ value:Int?,for fightID:String,maximum:Int){guard let p=values[fightID],let method=p.method,method != "Decision" else{return};if let value,!(1...maximum).contains(value){return};values[fightID]?.round=value}
+ public mutating func toggleLock(_ fightID:String){guard let value=values[fightID]?.lock else{return};values[fightID]?.lock = !value}
+}
+public struct PickPayload:Codable,Sendable {public var event:String;public var eventName:String;public var date:String;public var picks:[FightPick];public var revision:Int?;public init(event:FightEvent,picks:PickSelection,revision:Int?=nil){self.event=event.id;self.eventName=event.name;self.date=String(event.date.prefix(10));self.picks=event.fights.compactMap{picks.values[$0.id]};self.revision=revision}}
+public struct TicketLeg:Codable,Sendable {public var fightId:String;public var athleteId:String;public var label:String;public var market:String;public var decimal:Double;public var outside:Bool?;public var source:String?;public var checkedAt:String?}
+public struct ParlayTicket:Codable,Identifiable,Sendable {public var id:String;public var category:String;public var legs:[TicketLeg];public var decimal:Double;public var reason:String;public var risk:String}
+public struct ParlayGroup:Codable,Identifiable,Sendable {public var id:String;public var title:String;public var tickets:[ParlayTicket];public var note:String?}
+public struct CreatorCard:Codable,Identifiable,Sendable {public var id:String;public var username:String;public var event:String;public var eventName:String;public var date:String;public var picks:[FightPick];public var createdAt:String;public var verifiedEligible:Bool?;public var cutoff:String?}
+public func americanOdds(_ decimal:Double?)->String {guard let d=decimal,d.isFinite,d>1 else{return "Unpriced"};return d>=2 ? "+\(Int(((d-1)*100).rounded()))" : "−\(Int((100/(d-1)).rounded()))"}
+public func decimalOdds(_ american:Double?)->Double? {guard let a=american,a.isFinite,abs(a)>=100 else{return nil};return a>0 ? 1+a/100 : 1+100/(-a)}

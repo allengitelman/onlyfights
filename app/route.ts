@@ -1,0 +1,5 @@
+import shell from './shell.html?raw';
+import { env } from 'cloudflare:workers';
+import { readShare,escapeHTML } from '../lib/social-core';
+export const dynamic='force-dynamic';
+export async function GET(request:Request){let markup=shell;const url=new URL(request.url),id=url.searchParams.get('share');if(id&&env.DB)try{const s=await readShare(env.DB,id);if(s){const title=`@${s.username}’s picks · OnlyFights`,description=`${s.picks.length} picks for ${s.eventName}. Tail @${s.username} on OnlyFights.`;markup=markup.replace(/<title>.*?<\/title>/,`<title>${escapeHTML(title)}</title>`).replace('</head>',`<meta property="og:title" content="${escapeHTML(title)}"><meta property="og:description" content="${escapeHTML(description)}"><meta name="description" content="${escapeHTML(description)}"><meta property="og:type" content="website"><meta property="og:url" content="${escapeHTML(url.origin+'/?share='+s.id)}"></head>`);}}catch{}return new Response(markup,{headers:{'Content-Type':'text/html;charset=utf-8','Cache-Control':'no-store'}})}
