@@ -15,6 +15,13 @@
       "when": 1793372400000,
       "tag": "0001_onlyfights_beta",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1793721600000,
+      "tag": "0002_prediction_record",
+      "breakpoints": true
     }
   ]
 }
