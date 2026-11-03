@@ -7,6 +7,7 @@ declare namespace Cloudflare {
     INSTAGRAM_APP_ID?: string;
     SHARPSPORTS_PRIVATE_KEY?: string;
     BETPLACE_LIVE_ENABLED?: string;
+    THE_ODDS_API_KEY?: string;
     BUCKET?: R2Bucket;
   }
 }

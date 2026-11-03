@@ -6,12 +6,13 @@ import { createAppIdentity, appError, authConfig } from '../../../lib/app-auth';
 import { createAppAPI } from '../../../lib/app-api';
 import { createEventService } from '../../../lib/events';
 import { withEventHistory } from '../../../lib/event-history';
+import { createOddsService } from '../../../lib/odds-api';
 export const dynamic='force-dynamic';
 const handler=createSocialAPI({database:()=>env.DB,identify:()=>getChatGPTUser(),signInPath:chatGPTSignInPath});
 const betting=createBetplaceAPI({getKey:()=>env.SHARPSPORTS_PRIVATE_KEY,getLiveEnabled:()=>env.BETPLACE_LIVE_ENABLED==='true'});
 const config=()=>({url:env.SUPABASE_URL,key:env.SUPABASE_PUBLISHABLE_KEY,instagramAppId:env.INSTAGRAM_APP_ID});
 const identify=createAppIdentity({database:()=>env.DB,config});
-const app=createAppAPI({database:()=>env.DB,identify,eventService:withEventHistory({database:()=>env.DB,service:createEventService()}),config,legacyIdentify:()=>getChatGPTUser(),deleteIdentity:env.SUPABASE_SERVICE_ROLE_KEY?async(subject:string)=>{
+const app=createAppAPI({database:()=>env.DB,identify,eventService:withEventHistory({database:()=>env.DB,service:createEventService({odds:createOddsService({getKey:()=>env.THE_ODDS_API_KEY,database:()=>env.DB})})}),config,legacyIdentify:()=>getChatGPTUser(),deleteIdentity:env.SUPABASE_SERVICE_ROLE_KEY?async(subject:string)=>{
  const c=authConfig(config());if(!c||!env.SUPABASE_SERVICE_ROLE_KEY)throw appError('Account deletion is not configured. Contact the app owner.',503,'deletion_setup_required');
  const r=await fetch(c.url+'/auth/v1/admin/users/'+encodeURIComponent(subject),{method:'DELETE',headers:{apikey:env.SUPABASE_SERVICE_ROLE_KEY,Authorization:'Bearer '+env.SUPABASE_SERVICE_ROLE_KEY},redirect:'manual',signal:AbortSignal.timeout(10000)});
  if(!r.ok)throw appError('Account deletion could not be completed. Try again.',503);
