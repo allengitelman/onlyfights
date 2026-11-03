@@ -63,3 +63,13 @@ test('an unresolvable old card does not block grading of newer cards',async()=>{
  Object.assign(f.state.event.fights[0],{completed:true,result:{winnerId:'1',method:'Decision',round:3}});
  const rec=(await f.call('me/record')).data;assert.equal(rec.records.find(r=>r.event==='100').grade.winner,'won');assert.equal(rec.summary.totals.pending,4);
 });
+test('verified public picks from before the ledger carry over once, newest share wins and live rows are kept',async()=>{const f=await fixture();
+ await f.save([pick('300','4','3')]);
+ const share=(id,athlete,created,eligible=1)=>f.db.prepare('INSERT INTO app_shares VALUES (?,?,?,?,?,?,?)').bind(id,'alice','100',JSON.stringify({eventName:'UFC Test',date:'2026-11-08',picks:[{fightId:'200',athleteId:athlete,opponentId:athlete==='1'?'2':'1',fighter:'X',opponent:'Y',market:'Moneyline',odds:2.5},{fightId:'300',athleteId:'3',opponentId:'4',fighter:'Gamma Three',opponent:'Delta Four'}]}),eligible,T1,created);
+ await f.db.batch([share('aaaaaaaaaaaa','1','2026-11-01T00:00:00Z'),share('bbbbbbbbbbbb','2','2026-11-02T00:00:00Z'),share('cccccccccccc','1','2026-11-03T00:00:00Z',0)]);
+ await f.call('me/record');let rows=await f.rows();
+ assert.equal(rows.find(r=>r.fight_id==='200').athlete_id,'2','latest verified share wins');assert.equal(rows.find(r=>r.fight_id==='200').pick_odds,150);
+ assert.equal(rows.find(r=>r.fight_id==='300').athlete_id,'4','a live ledger row is never overwritten');
+ await f.db.prepare('DELETE FROM app_predictions WHERE fight_id=?').bind('200').run();await f.call('me/record');rows=await f.rows();
+ assert.equal(rows.some(r=>r.fight_id==='200'),false,'the carry-over runs once');
+});
